@@ -26,7 +26,9 @@ endwhile;
     */
     $args = array(
         'post_type'      => 'oppia_course',
-        'posts_per_page' => -1
+        'posts_per_page' => -1,
+    	'orderby'=>'title',
+    	'order'=>'asc'
         );
     // Query Out Database
     $aa_tablesQuery = new WP_Query( $args );
