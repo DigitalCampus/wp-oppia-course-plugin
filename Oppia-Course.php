@@ -127,10 +127,18 @@ class PageTemplater {
 
 
                 // Add a filter to the attributes metabox to inject template into the cache.
-                add_filter(
-                    'page_attributes_dropdown_pages_args',
-                     array( $this, 'register_project_templates' ) 
-                );
+                if ( version_compare( floatval( get_bloginfo( 'version' ) ), '4.7', '<' ) ) {
+                    // 4.6 and older
+                    add_filter(
+                        'page_attributes_dropdown_pages_args',
+                        array( $this, 'register_project_templates' )
+                    );
+                } else {
+                    // Add a filter to the wp 4.7 version attributes metabox
+                    add_filter(
+                        'theme_page_templates', array( $this, 'add_new_template' )
+                    );
+                }
 
 
                 // Add a filter to the save post to inject out template into the page cache
@@ -150,10 +158,19 @@ class PageTemplater {
 
                 // Add your templates to this array.
                 $this->templates = array(
-                        'single-oppia_course-todos.php'     => 'OppiaCourse',
+                        'list-oppia_course.php' => 'OppiaCourse:List',
                 );
                 
         } 
+
+        /**
+         * Adds our template to the page dropdown for v4.7+
+         *
+         */
+        public function add_new_template( $posts_templates ) {
+            $posts_templates = array_merge( $posts_templates, $this->templates );
+            return $posts_templates;
+        }
 
 
         /**
@@ -194,26 +211,28 @@ class PageTemplater {
          */
         public function view_project_template( $template ) {
 
+                // Get global post
                 global $post;
-
-                if (!isset($this->templates[get_post_meta( 
+                // Return template if post is empty
+                if ( ! $post ) {
+                    return $template;
+                }
+                // Return default template if we don't have a custom one defined
+                if ( ! isset( $this->templates[get_post_meta( 
                     $post->ID, '_wp_page_template', true 
                 )] ) ) {
-                    
-                        return $template;
-                        
+                    return $template;
                 } 
-
-                $file = plugin_dir_path(__FILE__). get_post_meta( 
-                    $post->ID, '_wp_page_template', true 
+                $file = plugin_dir_path( __FILE__ ). get_post_meta( 
+                    $post->ID, '_wp_page_template', true
                 );
-                
                 // Just to be safe, we check if the file exist first
-                if( file_exists( $file ) ) {
-                        return $file;
-                } 
-                else { echo $file; }
-
+                if ( file_exists( $file ) ) {
+                    return $file;
+                } else {
+                    echo $file;
+                }
+                // Return template
                 return $template;
 
         } 
@@ -223,6 +242,4 @@ class PageTemplater {
 
 add_action( 'plugins_loaded', array( 'PageTemplater', 'get_instance' ) );
 
-
-///////////////////////AÑADIMOS EL CSS
 ?>
