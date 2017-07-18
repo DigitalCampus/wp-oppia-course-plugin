@@ -1,30 +1,22 @@
 <?php
 /*
 Plugin Name: Oppia Course
-Plugin URI: https://www.oppia.org/splash
-Description: Permite generar un curso de Oppia
-Version: 0.3
-Author: Chaotic-kingdoms
-Author URI: http://www.chaotic-kingdoms.com
+Plugin URI: https://github.com/DigitalCampus/wp-oppia-course-plugin
+Description: Plugin for displaying Digital Campus custom post types
+Version: 0.4
+Author: Digital Campus
+Author URI: https://digital-campus.org/
 License: GPLv2
 */
-/*La funcion de a continuación llama siempre a la función crete_movie_review siempre que se genera la página*/
+
 add_action( 'init', 'create_oppia_course' );
 
-/*Esta función hace la mayoría del trabajo por nosotros
-Prepara una nueva sección. Estsa función toma dos argumentos, 
-    el nombre
-    un array con las propiedades del tipo:
-        name indica el nombre que se mostrará en el dashboard
-
-Otros argumentos importantes son:
-    public => true, determina la visibilidad en el panel.
-    menu_position pues la posición.*/
+/* Create the custom post type */
 function create_oppia_course() {
     register_post_type( 'oppia_course',
         array(
             'labels' => array(
-                'name' => 'Oppia Course',
+                'name' => 'Oppia Courses',
                 'singular_name' => 'Oppia Course',
                 'add_new' => 'Add new',
                 'add_new_item' => 'Add new Oppia Course',
@@ -50,9 +42,7 @@ function create_oppia_course() {
 }
 
 /**
- *
  * Include VafPress Framework
- *
  */
 if (file_exists(dirname(__FILE__).'/vafpress/bootstrap.php')) {
     require_once( dirname(__FILE__).'/vafpress/bootstrap.php' );
@@ -67,9 +57,8 @@ if (file_exists(dirname(__FILE__).'/data_sources.php')) {
 }
 
 
-/*Hasta este momento podemos guardar entradas, ahora tenemos que hacer que se muestren correctamente cuando las publicamos*/
+/* Add template for custom post type */
 add_filter( 'template_include', 'include_template_function', 1 );
-//Simplemente esta función llama a un php del formato sinle-(post-type-name).php que es donde esta el esquema
 function include_template_function( $template_path ) {
     if ( get_post_type() == 'oppia_course' ) {
         if ( is_single() ) {
@@ -85,8 +74,7 @@ function include_template_function( $template_path ) {
     return $template_path;
 }
 
-//////////////////////TERCER TUTORIAL
-//En este caso añadimos los temas
+//Add custom template
 class PageTemplater {
 
         /**
@@ -147,7 +135,6 @@ class PageTemplater {
                     array( $this, 'register_project_templates' ) 
                 );
 
-
                 // Add a filter to the template include to determine if the page has our 
                 // template assigned and return it's path
                 add_filter(
@@ -155,10 +142,9 @@ class PageTemplater {
                     array( $this, 'view_project_template') 
                 );
 
-
                 // Add your templates to this array.
                 $this->templates = array(
-                        'list-oppia_course.php' => 'OppiaCourse:List',
+                        'list-oppia_course.php' => 'Oppia: Course List',
                 );
                 
         } 
@@ -178,7 +164,6 @@ class PageTemplater {
          * into thinking the template file exists where it doens't really exist.
          *
          */
-
         public function register_project_templates( $atts ) {
 
                 // Create the key used for the themes cache
