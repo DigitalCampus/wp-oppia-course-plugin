@@ -34,41 +34,22 @@ wp_enqueue_style( 'my-style', plugins_url( '/css/style_oppia_course.css', __FILE
                 <div class="links">
                     <?php
                     // Get the object
-                    // i.e. $aa_tbl_mb_val = vp_metabox('aa_tbl_mb');
-                    $aa_tbl_mb_val = ( null !== vp_metabox('aa_tbl_mb') ) ? vp_metabox('aa_tbl_mb') : 0 ;
-                    if( $aa_tbl_mb_val != 0 ){
-                    // Get the meta array in object
-                    // Undefined constant corrected
-                    // i.e. $aa_tbl_group_val = $aa_tbl_mb_val->meta['table_group'];
-                        $aa_tbl_group_val = ( null !== $aa_tbl_mb_val->meta['table_group'] ) ? $aa_tbl_mb_val->meta['table_group'] : 0 ;
+                    $versions_mb = ( null !== vp_metabox('course_version_mb') ) ? vp_metabox('course_version_mb') : 0;
+                    if($versions_mb != 0){
+                        $versions = ( null !== $versions_mb->meta['table_group'] ) ? $versions_mb->meta['table_group'] : 0 ;
                     }
-                    if( $aa_tbl_group_val != 0 ){
-                    
-                    	$i = 0;
+                    if( $versions != 0 ){
                         //Get the numbered array containing key value pairs in the meta array of obj
-                        foreach ($aa_tbl_group_val as $aa_tbl_group_val_num) {
-			                /**
-			                * Swap the values with keys to get a new array with numbered values
-			                * E.g. array { [0] => val1, [1] => val2}
-			                */
-			                $aa_tbl_group_val_num_pair = array_values($aa_tbl_group_val_num);
-			                //Print associative array of key val pairs with Property at 0th element and Value at 1th element of each array
-			                foreach ($aa_tbl_group_val_num_pair as $key => $val) {
-			                    if($key == 0){
-			                        $nombre = $val;
-			                    }
-			                //Value
-			                    else{
-			                //echo " <span class=\"aa_value\"><a href=". $val .">". $nombre ."</a></span></div>";
-			                        echo "<a href=". $val .">". $nombre ."</a>";
-			                        if ($i != count($aa_tbl_group_val)-1 ){
-			                        	echo " | ";
-			                        }
-			                    }
-			                } // end foreach
-			                $i++;
-               			} // end foreach
-                	} // End if
+                        foreach ($versions as $version) {
+			                $values = array_values($version);
+                            $label_version = $values[0];
+                            $href_version = $values[1];
+                        ?>
+                        <a class=href="<?= $href_version ?>"> <?= $label_version ?> </a>
+                        <?php
+	                        
+			             }
+               		} // end foreach
                 ?>
             </div>
         </div>

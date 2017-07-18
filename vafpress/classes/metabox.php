@@ -585,7 +585,7 @@ class VP_Metabox extends WPAlchemy_MetaBox
 		}
 
 		$html .= '<div class="vp-wpa-group-add">';
-		$html .= '<a href="#" class="button button-large docopy-' . $name . '">'. __('Add More', 'vp_textdomain') . ' ' . $group['title'] . '</a>';
+		$html .= '<a href="#" class="button button-large docopy-' . $name . '">'. __('Add ', 'vp_textdomain') . ' ' . $group['title'] . '</a>';
 		$html .= '</div>';
 
 		$html .= '</div>';
