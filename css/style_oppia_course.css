@@ -1,38 +1,29 @@
-.imagenPre {
+
+.oppia_courses_list{
+	margin-top:40px;
+}
+
+.oppia_course .title{
+	margin-left: 100px;
+	margin-top: 30px;
+}
+
+.oppia_course .description{
+	margin-left: 100px;
+	margin-top: -10px;
+}
+
+.course_icon {
 	width: 60px;
     height: 60px;
     margin-top: -50px;
 }
 
-.titulo
-{
-	margin-left: 100px;
-	margin-top: 30px;
-}
-
-.entry
-{
-	margin-left: 100px;
-	margin-top: -10px;
-}
-
-.aa_table
-{
+.aa_table{
 	margin-left: 100px;
 }
 
-.enlaces
-{
-	    margin-left: 140px;
+.oppia_course .links{
+	margin-left: 140px;
     margin-top: -30px;
-}
-
-.entry2
-{
-	margin-top: 200px;
-}
-
-.span12
-{
-	margin-top: 50px;
 }
