@@ -25,6 +25,7 @@
     color: #fff;
     background-color: #689e3a;
     border-color: #689e3a;
+        margin-bottom: 0.7em;
 }
 .oppia_btn:hover{
 	color: #fafafa;
@@ -38,15 +39,42 @@
 	overflow: auto;
 }
 .oppia_courses_list .oppia_course{
-	width:400px;
+	width:33%;
 	display: inline-block;
 	vertical-align: top;
+	position: relative;
+}
+.oppia_course .card{
 	margin: 15px;
 	border-radius: 4px;
 	box-shadow: 0 3px 7px rgba(0,0,0,0.2);
 	padding: 20px;
 	text-align: center;
+	z-index: 100;
 }
+
+@media(max-width: 970px){
+	.oppia_courses_list .oppia_course{
+		width:49.5%;
+	}
+}
+@media(max-width: 758px){
+	.oppia_courses_list .oppia_course{
+		width:100%;
+		max-width: 450px;
+		display: block;
+		margin: auto;
+	}
+	.oppia_course .card{
+		margin: 15px 10px;
+	}
+}
+@media(max-width: 458px){
+	.oppia_course .card{
+		margin: 15px 5px;
+	}
+}
+
 .oppia_course .title{
 	margin-top: 30px;
 	font-size: 1.3em;

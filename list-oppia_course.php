@@ -18,6 +18,7 @@ wp_enqueue_style( 'my-style', plugins_url( '/css/style_oppia_course.css', __FILE
     if ($aa_tablesQuery->have_posts()) : while ( $aa_tablesQuery->have_posts() ) : $aa_tablesQuery->the_post();
     ?>
     <div class="oppia_course">
+        <div class="card">
         <div class="course_icon">
             <?php the_post_thumbnail(); ?>
         </div>
@@ -59,7 +60,7 @@ wp_enqueue_style( 'my-style', plugins_url( '/css/style_oppia_course.css', __FILE
                         <?php }
                		} // end foreach
                 ?>
-        
+        </div>
     </div>
         
 <?php endwhile; endif; // END if and while for WordPress Loop ?>
