@@ -44,7 +44,7 @@
 	vertical-align: top;
 	position: relative;
 }
-.oppia_course .card{
+.oppia_course .oppia_card{
 	margin: 15px;
 	border-radius: 4px;
 	box-shadow: 0 3px 7px rgba(0,0,0,0.2);
@@ -65,12 +65,12 @@
 		display: block;
 		margin: auto;
 	}
-	.oppia_course .card{
+	.oppia_course .oppia_card{
 		margin: 15px 10px;
 	}
 }
 @media(max-width: 458px){
-	.oppia_course .card{
+	.oppia_course .oppia_card{
 		margin: 15px 5px;
 	}
 }
