@@ -1,29 +1,74 @@
 
+.oppia_btn{
+	-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+    outline: 0;
+    border: none;
+    font-size: 14px;
+    border-radius: 2px;
+    line-height: 36px;
+    padding: 0 1rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    text-align: center;
+
+    letter-spacing: .5px;
+    -webkit-transition: .3s ease-out;
+    -o-transition: .3s ease-out;
+    transition: .3s ease-out;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    display: inline-block;
+
+    color: #fff;
+    background-color: #689e3a;
+    border-color: #689e3a;
+}
+.oppia_btn:hover{
+	color: #fafafa;
+	-webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,.14), 0 1px 7px 0 rgba(0,0,0,.12), 0 3px 1px -1px rgba(0,0,0,.2);
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,.14), 0 1px 7px 0 rgba(0,0,0,.12), 0 3px 1px -1px rgba(0,0,0,.2);
+	background-color: #9aca3c;
+}
 .oppia_courses_list{
 	margin-top:40px;
+	clear: both;
+	overflow: auto;
 }
-
+.oppia_courses_list .oppia_course{
+	width:400px;
+	display: inline-block;
+	vertical-align: top;
+	margin: 15px;
+	border-radius: 4px;
+	box-shadow: 0 3px 7px rgba(0,0,0,0.2);
+	padding: 20px;
+	text-align: center;
+}
 .oppia_course .title{
-	margin-left: 100px;
 	margin-top: 30px;
+	font-size: 1.3em;
+	font-weight: bold;
 }
 
 .oppia_course .description{
-	margin-left: 100px;
 	margin-top: -10px;
+	text-align: justify;
 }
-
 .course_icon {
-	width: 60px;
-    height: 60px;
-    margin-top: -50px;
+	vertical-align: middle;
+	text-align: center;
 }
-
-.aa_table{
-	margin-left: 100px;
+.course_icon img{
+	max-width: 90%;	
 }
 
 .oppia_course .links{
-	margin-left: 140px;
-    margin-top: -30px;
+	margin:-20px;
+	padding:15px;
+	font-size: 0.9em;
+    margin-top: 10px;
+    background-color:#eee;
 }
