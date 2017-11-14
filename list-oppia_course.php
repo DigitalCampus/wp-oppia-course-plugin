@@ -9,8 +9,8 @@ wp_enqueue_style( 'my-style', plugins_url( '/css/style_oppia_course.css', __FILE
         'post_type'      => 'oppia_course',
         'post_status' => 'publish',
         'posts_per_page' => -1,
-    	'orderby'=>'title',
-    	'order'=>'asc'
+        'orderby'=>'title',
+        'order'=>'asc'
         );
     // Query Out Database
     $aa_tablesQuery = new WP_Query( $args );
@@ -30,11 +30,7 @@ wp_enqueue_style( 'my-style', plugins_url( '/css/style_oppia_course.css', __FILE
         <!-- Display the Course's content -->
         <div class="description">
             <?php the_content(); ?>
-        </div>
-                
-                
-
-                    <?php
+        </div><?php
                     // Get the object
                     $versions_mb = ( null !== vp_metabox('course_version_mb') ) ? vp_metabox('course_version_mb') : 0;
                     if($versions_mb != 0){
@@ -42,26 +38,20 @@ wp_enqueue_style( 'my-style', plugins_url( '/css/style_oppia_course.css', __FILE
                     }
                     if( ($versions != 0) && (count($versions)>0) ){ 
                         //Check that the first one is not empty
-                        if (array_values($versions[0])[0] != ''){ ?>
-                        <div class="links">
+                        if (array_values($versions[0])[0] != ''){ ?><div class="links">
                                 Preview in Moodle:<br>
                     <?php
                             //Get the numbered array containing key value pairs in the meta array of obj
                             foreach ($versions as $version) {
-    			                $values = array_values($version);
+                                $values = array_values($version);
                                 $label_version = $values[0];
                                 $href_version = $values[1];
                             ?>
-                            <a class="oppia_btn" href="<?= $href_version ?>"> <?= $label_version ?> </a>
-                            <?php
-	                        
-			                } ?>
-                            </div>
-                        <?php }
-               		} // end foreach
-                ?>
-        </div>
-    </div>
-        
+                            <a class="oppia_btn" href="<?= $href_version ?>"> <?= $label_version ?></a><?php
+                            
+                            } ?>
+                            </div><?php }
+                    } // end foreach
+                ?></div></div>
 <?php endwhile; endif; // END if and while for WordPress Loop ?>
 </div>
